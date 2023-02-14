@@ -21,7 +21,7 @@ function MeetupDetails(props) {
 }
 
 export async function getStaticPaths() {
-    const uri = "mongodb+srv://iampratiktandel:testuser@cluster0.ydkhodg.mongodb.net/?retryWrites=true&w=majority";
+    const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ydkhodg.mongodb.net/?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     const meetupsCollection = client.db("Meetup_Manager").collection("meetups");
@@ -56,7 +56,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
     const meetupId = context.params.meetupId;
 
-    const uri = "mongodb+srv://iampratiktandel:testuser@cluster0.ydkhodg.mongodb.net/?retryWrites=true&w=majority";
+    const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ydkhodg.mongodb.net/?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     const meetupsCollection = client.db("Meetup_Manager").collection("meetups");

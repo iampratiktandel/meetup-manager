@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 async function handler(req, res) {
-    const uri = "mongodb+srv://iampratiktandel:testuser@cluster0.ydkhodg.mongodb.net/?retryWrites=true&w=majority";
+    const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ydkhodg.mongodb.net/?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     if (req.method === 'POST') {
@@ -10,7 +10,7 @@ async function handler(req, res) {
 
         const result = await meetupsCollection.insertOne(data);
         console.log(result);
-        
+
         client.close();
         res.status(201).json({ message: 'Meetup inserted successfully' });
     }
